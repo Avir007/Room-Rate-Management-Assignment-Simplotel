@@ -6,6 +6,7 @@ from .models import *
 from .serializers import *
 from datetime import datetime, timedelta
 
+#API Endpoint for RoomRate listing and creating new Room Rate
 @api_view(['GET', 'POST'])
 def RoomRateListCreateView(request):
     if request.method == 'GET':
@@ -19,6 +20,7 @@ def RoomRateListCreateView(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+#API Endpoint for RoomRate Updating Existing Room Rate based on pk
 @api_view(['PUT',])
 def RoomRateUpdateView(request, pk):
     try:
@@ -33,6 +35,7 @@ def RoomRateUpdateView(request, pk):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+#API Endpoint for RoomRate deleting existing Room Rate details
 @api_view(['DELETE'])
 def RoomRateDeleteView(request, pk):
     try:
@@ -44,6 +47,7 @@ def RoomRateDeleteView(request, pk):
         roomrate.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+#API Endpoint for creating and listing Overridden room rate
 @api_view(['GET', 'POST'])
 def OverriddenRoomRateListCreateView(request):
     if request.method == 'GET':
@@ -57,6 +61,7 @@ def OverriddenRoomRateListCreateView(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+# API Endpoint for updating overridden roo rate price  based on pk
 @api_view(['PUT'])
 def OverriddenRoomRateUpdateView(request, pk):
     try:
@@ -71,6 +76,7 @@ def OverriddenRoomRateUpdateView(request, pk):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+#API Endpoint for deletiing overridden raoom rate price
 @api_view(['DELETE'])
 def OverriddenRoomRateDeleteView(request , pk):
     try:
@@ -81,6 +87,7 @@ def OverriddenRoomRateDeleteView(request , pk):
         overriddenrate.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+#API Endpoint for creating and listing Discount coupon
 @api_view(['GET', 'POST'])
 def DiscountListCreateView(request):
     if request.method == 'GET':
@@ -94,6 +101,7 @@ def DiscountListCreateView(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+#API End point for updating discount as per pk
 @api_view(['PUT'])
 def DiscountUpdateView(request, pk):
     try:
@@ -108,6 +116,7 @@ def DiscountUpdateView(request, pk):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+#API End point for deleting discount as per pk
 @api_view(['DELETE'])
 def DiscountDeleteView(request, pk):
     try:
@@ -118,6 +127,7 @@ def DiscountDeleteView(request, pk):
         discount.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+# API Endpoint for room rate to discount mapping
 @api_view(['GET', 'POST'])
 def DiscountRoomRateMappingView(request):
     if request.method == 'GET':
@@ -131,6 +141,7 @@ def DiscountRoomRateMappingView(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+#API Endpoint for deleting and updatig Roomrate to discount mapping as per key
 @api_view(['PUT', 'DELETE'])
 def DiscountRoomRateMappingUpdateView(request, pk):
     try:
@@ -150,7 +161,7 @@ def DiscountRoomRateMappingUpdateView(request, pk):
         discount_roomrate.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-
+#API End point for Calculating min price for date range for particular room
 @api_view(['GET'])
 def CalculatorRatesView(request, room_id, start_date, end_date):
     try:
